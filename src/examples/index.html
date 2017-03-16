@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>gemini checkbox examples</title>
+    <link rel="stylesheet" href="/assets/css/reset.css">
+    <link rel="stylesheet" href="/css/gemini.checkbox.min.css">
+</head>
+<body>
+    <div style="min-width: 200px; max-width: 1024px; width:500px; margin: 100px auto 0;">
+        <div id="company_checkbox"></div>
+        <button id="clear">Clear</button>
+        <button id="disable">Disable</button>
+    </div>
+    <script src="/assets/js/jquery.js"></script>
+    <script src="/js/gemini.checkbox.js"></script>
+    <script>
+        $('#company_checkbox').checkbox({
+          name: 'company',
+//          defaultValue: ['JD'],
+//          disabled: ['Facebook', 'Alibaba'],
+           checklist: ['Facebook', 'Google', 'Alibaba', 'JD'],
+//          onChange: function (e) {
+//            console.log(JSON.stringify(e.newValue));
+//          },
+//          size: 'medium',
+          onCheck: function (e) {
+            console.log(JSON.stringify(e.checkedStatus));
+            console.log(JSON.stringify(e.checkedValue));
+            console.log(JSON.stringify(e.newValue));
+          }
+        });
+
+        $('#clear').on('click', function () {
+          $('#company_checkbox').checkbox('clear');
+        });
+        $('#disable').on('click', function () {
+          $('#company_checkbox').checkbox('disable', []);
+        });
+    </script>
+</body>
+</html>
