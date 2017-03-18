@@ -17,14 +17,15 @@
     <script>
         $('#company_checkbox').checkbox({
           name: 'company',
-//          defaultValue: ['JD'],
-//          disabled: ['Facebook', 'Alibaba'],
-           checklist: ['Facebook', 'Google', 'Alibaba', 'JD'],
-//          onChange: function (e) {
-//            console.log(JSON.stringify(e.newValue));
-//          },
-//          size: 'medium',
-          onCheck: function (e) {
+          defaultValue: ['JD'],
+          disabled: ['Facebook', 'Alibaba'],
+          checklist: ['Facebook', 'Google', 'Alibaba', 'JD'],
+          onChange: function (e) {
+            console.log(JSON.stringify(e.newValue));
+          },
+          size: 'medium',
+          onClick: function (e) {
+            console.log(e.type);
             console.log(JSON.stringify(e.checkedStatus));
             console.log(JSON.stringify(e.checkedValue));
             console.log(JSON.stringify(e.newValue));

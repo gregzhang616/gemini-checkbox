@@ -13,7 +13,6 @@
   var NAMESPACE = 'checkbox';
   var EVENT_NAME_CLICK = 'click.' + NAMESPACE;
   var EVENT_NAME_CHANGE = 'change.' + NAMESPACE;
-  var EVENT_NAME_CHECK = 'check.' + NAMESPACE;
   var CACHE_CHK_DATA_NAME = 'dt-chk';
   var CLASS_DISABLED = 'disabled';
 
@@ -26,7 +25,7 @@
         disabled: null, // Boolean or Array
         defaultValue: null, // Boolean or Array
         size: 'small', // small, medium, large
-        onCheck: null,
+        onClick: null,
         onChange: null
       },
       init: function () {
@@ -75,8 +74,8 @@
         });
 
         // bind check event for chk
-        if ($.isFunction(checkbox.onCheck)) {
-          $el.on(EVENT_NAME_CHECK, checkbox.onCheck);
+        if ($.isFunction(checkbox.onClick)) {
+          $el.on(EVENT_NAME_CLICK, checkbox.onClick);
         }
       },
       generateChkDOM: function () {
@@ -193,7 +192,7 @@
         }
 
         checkedValue = isString($input.data(CACHE_CHK_DATA_NAME)) ? $input.data(CACHE_CHK_DATA_NAME) : $input.data(CACHE_CHK_DATA_NAME)['value'];
-        core.triggerEvent(EVENT_NAME_CHECK,
+        core.triggerEvent(EVENT_NAME_CLICK,
           {checkedStatus: isChecked, checkedValue: checkedValue, newValue: checkbox.value});
         core.triggerEvent(EVENT_NAME_CHANGE, {newValue: checkbox.value});
       },
