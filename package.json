@@ -1,6 +1,6 @@
 {
   "name": "gemini-checkbox",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A full-featured checkbox jquery plugin",
   "main": "dist/js/gemini.checkbox.min.js",
   "scripts": {
