@@ -113,6 +113,7 @@
                 '</label>';
             }
           }
+          dom += '</div>';
         }
         return dom;
       },
@@ -234,7 +235,7 @@
         core.triggerEvent(EVENT_NAME_CHANGE, {newValue: value});
         checkbox.value = value;
       },
-      clear: function () {
+      reset: function () {
         var type = checkbox.type;
         var value = type === 'single' ? false : [];
         checkbox.$inputs.prop('checked', false).siblings('em.gmi-check-label__icon').removeClass('checked');
@@ -251,8 +252,8 @@
       core.setValue(value);
     };
 
-    checkbox.clear = function () {
-      core.clear();
+    checkbox.reset = function () {
+      core.reset();
     };
 
     checkbox.disable = function () {
