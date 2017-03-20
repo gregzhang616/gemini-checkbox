@@ -63,10 +63,10 @@ Get the current checked value.
 $().checkbox('getValue');
 ```
 
-##### clear()
-Clear the checkbox checked status.
+##### reset()
+reset the checkbox checked status.
 ```
-$().checkbox('clear');
+$().checkbox('reset');
 ```
 
 ##### disable(value)
@@ -111,11 +111,11 @@ $().on('change.checkbox', function (event) {
 });
 ```
 
-##### check.checkbox
+##### click.checkbox
 This event fires when checkbox item is clicked.
 
 ```
-$().on('check.checkbox', function (e) {
+$().on('click.checkbox', function (e) {
   // todo
 });
 ```
@@ -141,13 +141,13 @@ $().checkbox({
 });
 ```
 
-##### onCheck
-A shortcut of the "check.checkbox" event, this callback called when checkbox item is clicked.
+##### onClick
+A shortcut of the "click.checkbox" event, this callback called when checkbox item is clicked.
 
 ```
 $().checkbox({
-    onCheck: function () {
-      // todo
+    onClick: function (event) {
+      console.log('newValue: ' + event.newValue);
     }
 });
 ```
