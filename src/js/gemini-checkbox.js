@@ -50,6 +50,10 @@
         if (checkbox.defaultValue !== null) core.setValue(checkbox.value);
         core.bindEvent();
       },
+      unCreated: function () {
+        var $element = checkbox.$element;
+        if ($element && $element.length > 0) $element.remove();
+      },
       bindEvent: function () {
         // bind click event for chk wrapper, then the child elements're clicked can bubble to this element
         checkbox.$element.on(EVENT_NAME_CLICK, function (e) {
@@ -77,6 +81,10 @@
         if ($.isFunction(checkbox.onClick)) {
           $el.on(EVENT_NAME_CLICK, checkbox.onClick);
         }
+      },
+      unBindEvent: function () {
+        $el.off(EVENT_NAME_CLICK, checkbox.onClick);
+        $el.off(EVENT_NAME_CHANGE, checkbox.onChange);
       },
       generateChkDOM: function () {
         var checklist = checkbox.checklist;
@@ -244,6 +252,8 @@
       }
     };
 
+    checkbox.version = '1.0.3';
+
     checkbox.getValue = function () {
       return checkbox.value;
     };
@@ -276,6 +286,12 @@
       core.disableChkItem(disabled);
     };
 
+    checkbox.destroy = function () {
+      core.unCreated();
+      core.unBindEvent();
+      $el.removeData(NAMESPACE);
+    };
+
     core.init();
   };
 
@@ -286,13 +302,13 @@
     var result;
 
     $self.each(function () {
-      var data = $(this).data('checkbox');
+      var data = $(this).data(NAMESPACE);
       var fn;
       if (!data) {
         if (/destroy/.test(options)) {
           return false;
         }
-        if (!isString(options)) return $(this).data('checkbox', (data = new Checkbox($(this), options)));
+        if (!isString(options)) return $(this).data(NAMESPACE, (data = new Checkbox($(this), options)));
       }
       if (data && isString(options) && $.isFunction(fn = data[options])) {
         result = fn.apply(data, args);
@@ -300,6 +316,8 @@
     });
     return typeof result === 'undefined' ? $self : result;
   };
+
+  $.fn.checkbox.constructor = Checkbox;
 
   function toArray (obj, offset) {
     var args = [];

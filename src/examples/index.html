@@ -11,6 +11,7 @@
         <div id="company_checkbox"></div>
         <button id="clear">Clear</button>
         <button id="disable">Disable</button>
+        <button id="destroy">Destroy</button>
     </div>
     <script src="/assets/js/jquery.js"></script>
     <script src="/js/gemini.checkbox.js"></script>
@@ -37,6 +38,9 @@
         });
         $('#disable').on('click', function () {
           $('#company_checkbox').checkbox('disable', []);
+        });
+        $('#destroy').on('click', function () {
+          $('#company_checkbox').checkbox('destroy');
         });
     </script>
 </body>
